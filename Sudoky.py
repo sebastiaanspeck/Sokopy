@@ -39,6 +39,11 @@ def play():
 
 
 def draw_field():
+    print_x()
+    print_y()
+
+
+def print_x():
     print('  ', end='')
     for i in range(1, 10):
         if i % 3 == 0:
@@ -46,18 +51,25 @@ def draw_field():
         else:
             print(i, end=' ')
     print()
+
+
+def print_y():
     for i in range(9):
         print(string.ascii_uppercase[i], end=' ')
-        for idex in range(9):
-            if idex == 2 or idex == 5:
-                print(field[i][idex], ' |', sep='', end=' ')
-            else:
-                print(field[i][idex], sep='', end=' ')
+        print_field(i)
         if i == 2 or i == 5:
             print("\n  ------+-------+------")
         else:
             print()
     print()
+
+
+def print_field(i):
+    for idex in range(9):
+        if idex == 2 or idex == 5:
+            print(field[i][idex], ' |', sep='', end=' ')
+        else:
+            print(field[i][idex], sep='', end=' ')
 
 
 def check_field():
