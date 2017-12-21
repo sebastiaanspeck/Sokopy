@@ -14,10 +14,6 @@ def menu():
     play()
 
 
-def empty_space():
-    return any('.' in row for row in field)
-
-
 def play():
     # while the field is not correct, give a new input:
     draw_field()
@@ -66,6 +62,18 @@ def draw_field():
 
 def check_field():
     # check if each square contains the numbers 1 to 9 only once.
+    if not check_squares():
+        return False
+    # check if each row (A1 to A9) contains the numbers 1 to 9 only once.
+    if not check_rows():
+        return False
+    # check if each column (A1 to I1) contains the numbers 1 to 9 only once.
+    if not check_colums():
+        return False
+    return True
+
+
+def check_squares():
     a = 0
     b = 3
     c = 0
@@ -84,19 +92,22 @@ def check_field():
             b += 3
             c = 0
             d = 3
-    # check if each row (A1 to A9) contains the numbers 1 to 9 only once.
+
+
+def check_rows():
     for x in range(9):
         block = field[x]
         if not set(block) == {1, 2, 3, 4, 5, 6, 7, 8, 9}:
             return False
-    # check if each column (A1 to I1) contains the numbers 1 to 9 only once.
+
+
+def check_colums():
     for x in range(9):
         block = []
         for i in range(9):
             block.append(field[i][x])
         if not set(block) == {1, 2, 3, 4, 5, 6, 7, 8, 9}:
             return False
-    return True
 
 
 menu()
