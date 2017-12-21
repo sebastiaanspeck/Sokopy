@@ -62,7 +62,7 @@ def draw_field():
 
 def check_field():
     # check if each square contains the numbers 1 to 9 only once.
-    if not check_squares(a=0, b=3, c=0, d=3):
+    if not check_squares(a=0, b=3):
         return False
     # check if each row (A1 to A9) contains the numbers 1 to 9 only once.
     if not check_rows():
@@ -73,7 +73,9 @@ def check_field():
     return True
 
 
-def check_squares(a, b, c, d):
+def check_squares(a, b):
+    c = a
+    d = b
     for x in range(1, 10):
         block = []
         for i in range(a, b):
