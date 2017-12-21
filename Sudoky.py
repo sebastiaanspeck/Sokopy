@@ -19,24 +19,28 @@ def play():
     draw_field()
     while not check_field():
         print("Lets Play...")
-        while True:
-            coordinates = input(str("Give the coordinates and your number (e.a. A5=7): "))
-            if len(coordinates) < 3:
-                print("You didn't entered enough input, give the input like A5=7")
-                continue
-            if ord(coordinates[0].upper()) - 65 <= 9 or int(coordinates[1]) - 1 < 9 or int(coordinates[3]) < 9:
-                try:
-                    x = ord(coordinates[0].upper()) - 65
-                    y = int(coordinates[1]) - 1
-                    number = int(coordinates[3])
-                    field[x][y] = number
-                except ValueError:
-                    print("You entered incorrect input, let's try again")
-                    continue
-                break
+        get_input()
         draw_field()
     print("You won")
 
+
+def get_input():
+    while True:
+        coordinates = input(str("Give the coordinates and your number (e.a. A5=7): "))
+        if len(coordinates) < 3:
+            print("You didn't entered enough input, give the input like A5=7")
+            continue
+        if ord(coordinates[0].upper()) - 65 <= 9 or int(coordinates[1]) - 1 < 9 or int(coordinates[3]) < 9:
+            try:
+                x = ord(coordinates[0].upper()) - 65
+                y = int(coordinates[1]) - 1
+                number = int(coordinates[3])
+                field[x][y] = number
+            except ValueError:
+                print("You entered incorrect input, let's try again")
+                continue
+            break
+            
 
 def draw_field():
     print_x()
