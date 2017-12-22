@@ -4,13 +4,16 @@ field = [['.' for a in range(9)] for b in range(9)]
 
 
 def menu():
-    print("""  _____             _         _           
- / ____|           | |       | |          
-| (___   _   _   __| |  ___  | | __ _   _ 
- \___ \ | | | | / _` | / _ \ | |/ /| | | |
- ____) || |_| || (_| || (_) ||   < | |_| |
-|_____/  \__,_| \__,_| \___/ |_|\_\ \__,_|
-                                          """)
+    print("""
+   _____           _       _          
+  / ____|         | |     | |         
+ | (___  _   _  __| | ___ | | ___   _ 
+  \___ \| | | |/ _` |/ _ \| |/ / | | |
+  ____) | |_| | (_| | (_) |   <| |_| |
+ |_____/ \__,_|\__,_|\___/|_|\_\\__, |
+                                 __/ |
+                                |___/ 
+    """)
     play()
 
 
@@ -40,7 +43,7 @@ def get_input():
                 print("You entered incorrect input, let's try again")
                 continue
             break
-            
+
 
 def draw_field():
     print_x()
@@ -78,7 +81,7 @@ def print_field(i):
 
 def check_field():
     # check if each square contains the numbers 1 to 9 only once.
-    if not check_squares(a=0, b=3):
+    if not check_squares():
         return False
     # check if each row (A1 to A9) contains the numbers 1 to 9 only once.
     if not check_rows():
@@ -89,23 +92,35 @@ def check_field():
     return True
 
 
-def check_squares(a, b):
-    c = a
-    d = b
+class CheckSquaresParams:
+    def __init__(self, a, b, c, d):
+        self.a = a
+        self.b = b
+        self.c = c
+        self.d = d
+
+
+def check_squares():
+    csp = CheckSquaresParams(0, 3, 0, 3)
     for x in range(1, 10):
-        block = []
-        for i in range(a, b):
-            for j in range(c, d):
-                block.append(field[i][j])
-        if not set(block) == {1, 2, 3, 4, 5, 6, 7, 8, 9}:
+        if not check_square(csp):
             return False
-        c += 3
-        d += 3
+        csp.c += 3
+        csp.d += 3
         if x % 3 == 0:
-            a += 3
-            b += 3
-            c = 0
-            d = 3
+            csp.a += 3
+            csp.b += 3
+            csp.c = 0
+            csp.d = 3
+
+
+def check_square(csp):
+    block = []
+    for i in range(csp.a, csp.b):
+        for j in range(csp.c, csp.d):
+            block.append(field[i][j])
+    if not set(block) == {1, 2, 3, 4, 5, 6, 7, 8, 9}:
+        return False
 
 
 def check_rows():
