@@ -1,5 +1,8 @@
 import string
 
+# TODO: create a function to fill x number of spaces with random numbers between 1 and 9 and check if this is a
+#         valid starting board
+
 field = [['.' for a in range(9)] for b in range(9)]
 
 
