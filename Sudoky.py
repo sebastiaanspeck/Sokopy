@@ -49,6 +49,7 @@ def get_input():
 
 
 def draw_field():
+    print()
     print_x()
     print_y()
 
