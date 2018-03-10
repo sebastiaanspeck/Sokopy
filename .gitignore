@@ -97,6 +97,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# PyCharm
 .idea/inspectionProfiles/Project_Default.xml
 .idea/misc.xml
 .idea/workspace.xml
